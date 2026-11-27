@@ -49,7 +49,7 @@ document.addEventListener('click',e=>{if(!$('profile-panel').contains(e.target)&
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProfile()});
 $('sign-out').onclick=()=>{closeProfile();$('workspace').classList.add('hidden');$('auth').classList.remove('hidden');$('password').value='';$('confirm').value='';$('message').value='';$('response-preview').classList.remove('show');$('response-preview').textContent='';mode(false);toast('You have signed out of the preview session.')};
 
-const BEAU_API_URL='https://YOUR-BEAU-API.workers.dev/chat';
+const BEAU_API_URL='https://beau-api-production-ff4808b0.up.railway.app/chat';
 const BEAU_MODES={basic:{name:'BEAU NEXUS',glyph:'✧',welcome:'Your everyday intelligence. Ask a question, explore an idea, or get something moving.'},deep:{name:'BEAU OMEGA',glyph:'◈',welcome:'Deep thinking engaged. Bring me a complex question, decision, or problem worth unpacking.'},code:{name:'BEAU FORGE',glyph:'⌘',welcome:'Development mode online. Share code, describe a bug, or plan your next build.'}};
 let beauMode='basic',beauHistory=[];
 function chooseBeauMode(mode){if(!BEAU_MODES[mode])return;beauMode=mode;const m=BEAU_MODES[mode];document.body.dataset.mode=mode;$('model-name').textContent=m.name;$('model-glyph').textContent=m.glyph;$('welcome-model').textContent="Hey. I'm "+m.name+".";$('welcome-copy').textContent=m.welcome;document.querySelectorAll('.model-option').forEach(b=>{const yes=b.dataset.mode===mode;b.classList.toggle('active',yes);b.querySelector('.model-check').textContent=yes?'✓':''});$('model-menu').classList.add('hidden');$('model-select').setAttribute('aria-expanded','false');try{localStorage.setItem('beau-mode',mode)}catch{}}
